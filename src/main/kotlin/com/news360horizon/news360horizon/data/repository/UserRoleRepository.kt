@@ -1,6 +1,7 @@
 package com.news360horizon.news360horizon.data.repository
 
 import com.news360horizon.news360horizon.data.entity.UserRole
+import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

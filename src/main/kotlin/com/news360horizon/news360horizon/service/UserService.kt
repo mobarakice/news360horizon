@@ -1,25 +1,59 @@
 package com.news360horizon.news360horizon.service
 
 import com.news360horizon.news360horizon.data.entity.User
+import com.news360horizon.news360horizon.data.entity.UserRole
 import com.news360horizon.news360horizon.data.repository.UserRepository
+import kotlinx.coroutines.flow.Flow
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 import java.math.BigInteger
-import java.util.*
 
-interface UserService {
-    suspend fun addNewUser(user: User)
-    suspend fun findUserByEmail(id: BigInteger): User
-//    suspend fun findUserByEmail(email: String) : User
-//    fun findAllUser() : Flow
+interface UserService : BaseService<User>, UserDetailsService {
+    fun findUserByEmail(email: String): User
 }
 
 @Service
 class UserServiceImpl(private val repository: UserRepository) : UserService {
-    override suspend fun addNewUser(user: User) {
-        repository.save(user)
+    override fun findUserByEmail(email: String): User {
+        return repository.findByEmail(email)
     }
 
-    override suspend fun findUserByEmail(id: BigInteger): User {
-        return repository.findById(id).get()
+    override suspend fun save(entity: User): User {
+        return repository.save(entity)
+    }
+
+    override fun deleteById(id: BigInteger) {
+        repository.deleteById(id)
+    }
+
+    override fun observeAll(): Flow<List<User>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun findAll(): List<User> {
+        TODO("Not yet implemented")
+    }
+
+    override fun findById(id: BigInteger): User {
+        TODO("Not yet implemented")
+    }
+
+    @Throws(UsernameNotFoundException::class)
+    override fun loadUserByUsername(email: String): UserDetails {
+        val user = findUserByEmail(email)
+        return org.springframework.security.core.userdetails.User(
+            user.email,
+            user.password,
+            mapRolesToAuthorities(listOf(user.userRole))
+        )
+    }
+
+    private fun mapRolesToAuthorities(roles: List<UserRole>): List<GrantedAuthority?> {
+        return roles.map { role -> SimpleGrantedAuthority(role.role) }
     }
 }

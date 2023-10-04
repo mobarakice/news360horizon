@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
 	kotlin("plugin.jpa") version "1.8.22"
+	id ("org.jetbrains.kotlin.plugin.allopen") version "1.9.10"
 }
 
 group = "com.news360horizon"
@@ -14,6 +15,13 @@ version = "0.0.1-SNAPSHOT"
 java {
 	sourceCompatibility = JavaVersion.VERSION_17
 }
+
+//allOpen {
+//	annotation("com.news360horizon.news360horizon.data.entity.Base")
+//	annotation("jakarta.persistence.Entity")
+//	annotation("jakarta.persistence.Embeddable")
+//	annotation("jakarta.persistence.MappedSuperclass")
+//}
 
 repositories {
 	mavenCentral()
@@ -36,6 +44,9 @@ dependencies {
 	runtimeOnly("com.mysql:mysql-connector-j")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 }
 
 tasks.withType<KotlinCompile> {
