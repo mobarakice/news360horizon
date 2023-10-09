@@ -4,7 +4,6 @@ import com.news360horizon.news360horizon.data.entity.User
 import com.news360horizon.news360horizon.data.entity.UserRole
 import com.news360horizon.news360horizon.data.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
@@ -45,7 +44,7 @@ class UserServiceImpl(private val repository: UserRepository) : UserService {
 
     @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(email: String): UserDetails {
-        val user = findUserByEmail(email)
+        val user = repository.findByEmail(email)
         return org.springframework.security.core.userdetails.User(
             user.email,
             user.password,
