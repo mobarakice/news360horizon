@@ -6,8 +6,8 @@ import org.springframework.boot.runApplication
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @SpringBootApplication
-@EntityScan(basePackages = ["com.news360horizon.news360horizon.data.entity"])
-@EnableJpaRepositories(basePackages = ["com.news360horizon.news360horizon.data.repository"])
+@EntityScan(basePackages = ["com.news360horizon.news360horizon.database"])
+@EnableJpaRepositories(basePackages = ["com.news360horizon.news360horizon.database"])
 class News360horizonApplication
 
 fun main(args: Array<String>) {

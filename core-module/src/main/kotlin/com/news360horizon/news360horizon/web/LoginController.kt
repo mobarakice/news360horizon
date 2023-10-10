@@ -1,6 +1,6 @@
 package com.news360horizon.news360horizon.web
 
-import com.news360horizon.news360horizon.database.repository.UserRepository
+import com.news360horizon.news360horizon.database.user.UserRepository
 import com.news360horizon.news360horizon.utility.PageUrls.ADMIN_LOGIN_PAGE
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping

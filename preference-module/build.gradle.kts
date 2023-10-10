@@ -8,7 +8,7 @@ plugins {
 	kotlin("plugin.jpa") version "1.8.22"
 }
 
-group = "com.news360horizon"
+group = "com.news360horizon.news360horizon.preference"
 version = "0.0.1-SNAPSHOT"
 
 java {

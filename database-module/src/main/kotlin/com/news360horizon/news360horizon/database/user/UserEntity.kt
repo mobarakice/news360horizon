@@ -30,6 +30,6 @@ data class UserEntity(
     override var updatedAt: Timestamp? = Timestamp.from(Instant.now()),
     @OneToOne(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
-    var userRoleEntity: UserRoleEntity
+    var userRole: UserRoleEntity
 ) : BaseEntity()
 

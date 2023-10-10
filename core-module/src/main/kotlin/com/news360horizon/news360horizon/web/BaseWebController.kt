@@ -1,6 +1,6 @@
 package com.news360horizon.news360horizon.web
 
-import com.news360horizon.news360horizon.database.repository.UserRepository
+import com.news360horizon.news360horizon.database.user.UserRepository
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer

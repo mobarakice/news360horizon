@@ -1,8 +1,8 @@
 package com.news360horizon.news360horizon.service
 
-import com.news360horizon.news360horizon.database.entity.User
-import com.news360horizon.news360horizon.database.entity.UserRole
-import com.news360horizon.news360horizon.database.repository.UserRepository
+import com.news360horizon.news360horizon.database.user.UserEntity
+import com.news360horizon.news360horizon.database.user.UserRepository
+import com.news360horizon.news360horizon.database.userrole.UserRoleEntity
 import kotlinx.coroutines.flow.Flow
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -12,17 +12,17 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 import java.math.BigInteger
 
-interface UserService : BaseService<User>, UserDetailsService {
-    fun findUserByEmail(email: String): User
+interface UserService : BaseService<UserEntity>, UserDetailsService {
+    fun findUserByEmail(email: String): UserEntity
 }
 
 @Service
 class UserServiceImpl(private val repository: UserRepository) : UserService {
-    override fun findUserByEmail(email: String): User {
+    override fun findUserByEmail(email: String): UserEntity {
         return repository.findByEmail(email)
     }
 
-    override suspend fun save(entity: User): User {
+    override suspend fun save(entity: UserEntity): UserEntity {
         return repository.save(entity)
     }
 
@@ -30,15 +30,15 @@ class UserServiceImpl(private val repository: UserRepository) : UserService {
         repository.deleteById(id)
     }
 
-    override fun observeAll(): Flow<List<User>> {
+    override fun observeAll(): Flow<List<UserEntity>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun findAll(): List<User> {
+    override suspend fun findAll(): List<UserEntity> {
         TODO("Not yet implemented")
     }
 
-    override fun findById(id: BigInteger): User {
+    override fun findById(id: BigInteger): UserEntity {
         TODO("Not yet implemented")
     }
 
@@ -52,7 +52,7 @@ class UserServiceImpl(private val repository: UserRepository) : UserService {
         )
     }
 
-    private fun mapRolesToAuthorities(roles: List<UserRole>): List<GrantedAuthority?> {
+    private fun mapRolesToAuthorities(roles: List<UserRoleEntity>): List<GrantedAuthority?> {
         return roles.map { role -> SimpleGrantedAuthority(role.role) }
     }
 }

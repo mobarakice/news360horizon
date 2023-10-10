@@ -6,10 +6,9 @@ plugins {
 	kotlin("jvm") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
 	kotlin("plugin.jpa") version "1.8.22"
-	id ("org.jetbrains.kotlin.plugin.allopen") version "1.9.10"
 }
 
-group = "com.news360horizon"
+group = "com.news360horizon.news360horizon.core"
 version = "0.0.1-SNAPSHOT"
 
 java {
@@ -47,10 +46,12 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
+	implementation(project(":database-module"))
 }
 
 tasks.withType<KotlinCompile> {
-	kotlinOptions {
+	kotlinOptions{
 		freeCompilerArgs += "-Xjsr305=strict"
 		jvmTarget = "17"
 	}
