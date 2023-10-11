@@ -15,9 +15,6 @@ java {
 	sourceCompatibility = JavaVersion.VERSION_17
 }
 
-repositories {
-	mavenCentral()
-}
 
 dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

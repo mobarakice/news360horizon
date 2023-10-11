@@ -22,9 +22,7 @@ java {
 //	annotation("jakarta.persistence.MappedSuperclass")
 //}
 
-repositories {
-	mavenCentral()
-}
+
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
