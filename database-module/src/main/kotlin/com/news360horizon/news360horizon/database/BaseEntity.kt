@@ -6,7 +6,7 @@ import java.sql.Timestamp
 import java.time.Instant
 
 abstract class BaseEntity {
-        abstract val id: BigInteger
+        abstract val id: Long
         @set:Column(name = "is_active")
         abstract var isActive: Boolean
 

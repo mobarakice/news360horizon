@@ -1,60 +1,32 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-	id("org.springframework.boot") version "3.1.4"
-	id("io.spring.dependency-management") version "1.1.3"
-	kotlin("jvm") version "1.8.22"
-	kotlin("plugin.spring") version "1.8.22"
-	kotlin("plugin.jpa") version "1.8.22"
+    alias(libs.plugins.spring.framework)
+    alias(libs.plugins.spring.dependency.management)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.spring)
+    alias(libs.plugins.kotlin.jpa)
 }
-
 group = "com.news360horizon.news360horizon.core"
 version = "0.0.1-SNAPSHOT"
 
-java {
-	sourceCompatibility = JavaVersion.VERSION_17
-}
-
-//allOpen {
-//	annotation("com.news360horizon.news360horizon.data.entity.Base")
-//	annotation("jakarta.persistence.Entity")
-//	annotation("jakarta.persistence.Embeddable")
-//	annotation("jakarta.persistence.MappedSuperclass")
-//}
-
-
-
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-data-rest")
-	implementation("org.springframework.boot:spring-boot-starter-jdbc")
-	implementation("org.springframework.boot:spring-boot-starter-security")
-	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-web-services")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	runtimeOnly("com.mysql:mysql-connector-j")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.security:spring-security-test")
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive")
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation(libs.starter.data.jdbc)
+    implementation(libs.starter.data.jpa)
+    implementation(libs.starter.data.rest)
+    implementation(libs.starter.jdbc)
+    implementation(libs.starter.security)
+    implementation(libs.starter.thymeleaf)
+    implementation(libs.starter.validation)
+    implementation(libs.starter.web)
+    implementation(libs.starter.web.services)
+    implementation(libs.jackson.module.kotlin)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.thymeleaf.extras)
+    developmentOnly(libs.boot.devtools)
+    runtimeOnly(libs.mysql.connector)
+    testImplementation(libs.starter.test)
+    testImplementation(libs.security.test)
+    implementation(libs.coroutines.core)
 
-	implementation(project(":database-module"))
+    implementation(projects.databaseModule)
 }
 
-tasks.withType<KotlinCompile> {
-	kotlinOptions{
-		freeCompilerArgs += "-Xjsr305=strict"
-		jvmTarget = "17"
-	}
-}
-
-tasks.withType<Test> {
-	useJUnitPlatform()
-}

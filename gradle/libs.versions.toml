@@ -1,11 +1,34 @@
 [versions]
-spring-boot = "3.0.3"
-spring-boot-starter-data-jpa = "3.0.3"
-spring-boot-starter-web = "3.0.3"
+springBoot = "3.1.4"
+springBootDM = "1.1.3"
+kotlinPlugin = "1.8.22"
 
 [libraries]
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+starter-data-jdbc = { group = "org.springframework.boot", name = "spring-boot-starter-data-jdbc" }
+starter-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
+starter-data-rest = { group = "org.springframework.boot", name = "spring-boot-starter-data-rest" }
+starter-jdbc = { group = "org.springframework.boot", name = "spring-boot-starter-jdbc" }
+starter-security = { group = "org.springframework.boot", name = "spring-boot-starter-security" }
+starter-thymeleaf = { group = "org.springframework.boot", name = "spring-boot-starter-thymeleaf" }
+starter-validation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
+starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+starter-web-services = { group = "org.springframework.boot", name = "spring-boot-starter-web-services" }
+jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
+thymeleaf-extras = { group = "org.thymeleaf.extras", name = "thymeleaf-extras-springsecurity6" }
+boot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
+mysql-connector = { group = "com.mysql", name = "mysql-connector-j" }
+starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+security-test = { group = "org.springframework.security", name = "spring-security-test" }
+coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core" }
 
 [plugins]
+spring-framework-id = { id = "org.springframework.boot"}
+spring-framework = { id = "org.springframework.boot", version.ref = "springBoot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "springBootDM" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinPlugin" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlinPlugin" }
+kotlin-jpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlinPlugin" }
 
-[bundles]
 

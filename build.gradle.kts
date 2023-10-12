@@ -1,15 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-//buildscript {
-//	repositories {
-//		mavenCentral()
-//	}
-//}
 plugins {
-	id("org.springframework.boot") version "3.1.4"
-	id("io.spring.dependency-management") version "1.1.3"
-	kotlin("jvm") version "1.8.22"
-	kotlin("plugin.spring") version "1.8.22"
-	kotlin("plugin.jpa") version "1.8.22"
+	alias(libs.plugins.spring.framework)
+	alias(libs.plugins.spring.dependency.management)
+	alias(libs.plugins.kotlin.jvm)
+	alias(libs.plugins.kotlin.spring)
+	alias(libs.plugins.kotlin.jpa)
 }
 
 group = "com.news360horizon"
@@ -17,11 +12,6 @@ version = "0.0.1-SNAPSHOT"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_17
-}
-
-dependencies {
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.security:spring-security-test")
 }
 
 tasks.withType<KotlinCompile> {

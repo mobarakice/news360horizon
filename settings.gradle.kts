@@ -14,6 +14,7 @@ dependencyResolutionManagement {
 
 
 rootProject.name = "news360horizon"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(":core-module")
 include(":data-module")

@@ -3,7 +3,6 @@ package com.news360horizon.news360horizon.database.user
 import com.news360horizon.news360horizon.database.BaseEntity
 import com.news360horizon.news360horizon.database.userrole.UserRoleEntity
 import jakarta.persistence.*
-import java.math.BigInteger
 import java.sql.Timestamp
 import java.time.Instant
 
@@ -21,7 +20,7 @@ data class UserEntity(
     @Column(name = "password")
     var password: String,
     @Id
-    override val id: BigInteger,
+    override val id: Long,
     override var isActive: Boolean = true,
     override var isDelete: Boolean = false,
     override var createdBy: String? = null,
