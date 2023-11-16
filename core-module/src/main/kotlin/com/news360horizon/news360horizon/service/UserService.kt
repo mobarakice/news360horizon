@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 import java.math.BigInteger
 
-interface UserService : BaseService<UserEntity>, UserDetailsService {
+interface UserService : BaseService<UserEntity> {
     fun findUserByEmail(email: String): UserEntity
 }
 
@@ -40,19 +40,5 @@ class UserServiceImpl(private val repository: UserRepository) : UserService {
 
     override fun findById(id: BigInteger): UserEntity {
         TODO("Not yet implemented")
-    }
-
-    @Throws(UsernameNotFoundException::class)
-    override fun loadUserByUsername(email: String): UserDetails {
-        val user = repository.findByEmail(email)
-        return org.springframework.security.core.userdetails.User(
-            user.email,
-            user.password,
-            mapRolesToAuthorities(listOf(user.userRole))
-        )
-    }
-
-    private fun mapRolesToAuthorities(roles: List<UserRoleEntity>): List<GrantedAuthority?> {
-        return roles.map { role -> SimpleGrantedAuthority(role.role) }
     }
 }

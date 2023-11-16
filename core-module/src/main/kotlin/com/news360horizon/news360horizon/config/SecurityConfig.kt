@@ -5,12 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.Customizer
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector
@@ -20,12 +18,20 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector
 @EnableWebSecurity
 class SecurityConfig {
 
+    @Autowired
+    private  lateinit var userServiceImpl: UserServiceImpl
+
+    @Autowired
+    private lateinit var handlerMappingIntrospector: HandlerMappingIntrospector
+
 
     @Bean
-    fun filterChain(http: HttpSecurity, interseptors: HandlerMappingIntrospector)
+    @Throws(Exception::class)
+    fun customFilterChain(http: HttpSecurity)
             : SecurityFilterChain {
 
-        val builder = MvcRequestMatcher.Builder(interseptors).servletPath("/path")
+        println("Password: ${passwordEncoder().encode("1234")}")
+        val builder = MvcRequestMatcher.Builder(handlerMappingIntrospector).servletPath("/path")
         val pattern = arrayOf("/static/**", "/css/**", "/js/**", "/images/**", "/resources/**",
             "/icon/**", "/api/**", "/login", "/forgot-password", "/registration"
         ).map { builder.pattern(it) }.toTypedArray()
@@ -38,7 +44,7 @@ class SecurityConfig {
             }.formLogin { login ->
                 login.loginPage("/login")
                     .loginProcessingUrl("/login")
-                    .defaultSuccessUrl("/api/success", true)
+                    .defaultSuccessUrl("/admin/home", true)
                     .failureUrl("/login?error=true")
                     .usernameParameter("email")
                     .passwordParameter("password")
@@ -55,13 +61,6 @@ class SecurityConfig {
                 it.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
             }.httpBasic { it.disable() }
             .build()
-    }
-    @Autowired
-    @Throws(Exception::class)
-    fun configGlobal(authBuilder: AuthenticationManagerBuilder,
-                     userServiceImpl: UserServiceImpl,
-                     passwordEncoder: PasswordEncoder) {
-        authBuilder.userDetailsService(userServiceImpl).passwordEncoder(passwordEncoder)
     }
 
     @Bean
