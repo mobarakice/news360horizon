@@ -13,6 +13,7 @@ dependencies {
     implementation(libs.starter.data.jpa)
     implementation(libs.starter.jdbc)
     implementation(libs.starter.validation)
+    implementation(libs.mysql.connector)
     runtimeOnly(libs.mysql.connector)
 }
 
