@@ -27,6 +27,6 @@ dependencies {
     testImplementation(libs.security.test)
     implementation(libs.coroutines.core)
 
-    implementation(projects.databaseModule)
+    implementation(projects.database)
 }
 
