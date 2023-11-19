@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/nav-style.css">
+    <link rel="stylesheet" type="text/css" href="../css/profile.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+</head>
+<body>
+
+<div class="topnav">
+    <a class="item active" href="/news360/admin/home">Profile</a>
+    <a class="item" href="/news360/admin/content-list">Content</a>
+    <a class="item" href="/news360/admin/preference-list">Preference</a>
+    <a class="item" href="/news360/admin/category-list">Category</a>
+    <a class="item" href="/news360/admin/native-ads-list">Native Ads</a>
+</div>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3><span class="panel-title" th:utext="${admin.name}"></span></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td><span th:text="${admin.email}"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Mobile No:</td>
+                                    <td><span th:text="${admin.phone}"></span></td>
+                                </tr>
+
+                                <tr>
+                                <tr>
+                                    <td>Address:</td>
+                                    <td><span th:text="${admin.address}"></span></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <form th:action="@{/logout}" method="get">
+                                <div id="btn-div">
+                                    <a href="/news360/admin/registration" class="btn btn-primary">Register New Admin</a>
+                                    <a href="/news360/admin/change-password" class="btn btn-primary">Change Password</a>
+                                    <button type="submit" class="btn btn-primary">Logout</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/profile.js"></script>
+
+</body>
+</html>

@@ -2,13 +2,7 @@ package com.news360horizon.news360horizon.service
 
 import com.news360horizon.news360horizon.database.user.UserEntity
 import com.news360horizon.news360horizon.database.user.UserRepository
-import com.news360horizon.news360horizon.database.userrole.UserRoleEntity
 import kotlinx.coroutines.flow.Flow
-import org.springframework.security.core.GrantedAuthority
-import org.springframework.security.core.authority.SimpleGrantedAuthority
-import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.core.userdetails.UserDetailsService
-import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 import java.math.BigInteger
 

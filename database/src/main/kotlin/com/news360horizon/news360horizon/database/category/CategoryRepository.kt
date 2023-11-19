@@ -5,14 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CategoryRepository : JpaRepository<CategoryEntity, Long>,CustomizedCategoryRepository
+interface CategoryRepository : JpaRepository<CategoryEntity, Long> {
 
-interface CustomizedCategoryRepository {
-    fun findCategoryByIsActiveOrderByIdDesc(isActive: Boolean): List<CategoryEntity>
-    fun findCategoryByIsActiveAndLanguageOrderByIdDesc(
+    fun findByIsActiveOrderByIdDesc(isActive: Boolean): List<CategoryEntity>
+    fun findByIsActiveAndLanguageOrderByIdDesc(
         isActive: Boolean,
         language: LanguageEntity
     ): List<CategoryEntity>
 
-    fun findCategoryByLanguageOrderByIdDesc(language: LanguageEntity): List<CategoryEntity>
+    fun findByLanguageOrderByIdDesc(language: LanguageEntity): List<CategoryEntity>
+
 }
