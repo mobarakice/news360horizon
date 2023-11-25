@@ -1,19 +1,24 @@
-package com.news360horizon.news360horizon.database.category
+package com.news360horizon.news360horizon.database.question
 
 import com.news360horizon.news360horizon.database.BaseEntity
+import com.news360horizon.news360horizon.database.content.ContentEntity
 import com.news360horizon.news360horizon.database.language.LanguageEntity
 import jakarta.persistence.*
 import java.sql.Timestamp
 import java.time.Instant
 
 @Entity
-@Table(name = "Category")
-data class CategoryEntity(
+@Table(name = "Questions")
+data class QuestionEntity(
     @Id
     override val id: Long,
-    var categoryName: String,
-    var description: String,
-    var icon: String?,
+    @Column(name = "question_text")
+    var questionText: String,
+
+    @OneToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @JoinColumn(name = "content_id", referencedColumnName = "id", unique = true)
+    val content: ContentEntity,
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(columnDefinition = "language_id", referencedColumnName = "id")
     var language: LanguageEntity,
@@ -24,4 +29,4 @@ data class CategoryEntity(
     override var updatedBy: String?,
     override var updatedAt: Timestamp?
 
-):BaseEntity()
+) : BaseEntity()

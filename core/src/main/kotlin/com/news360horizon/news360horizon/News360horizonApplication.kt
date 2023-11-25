@@ -12,7 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @EnableJpaRepositories(basePackages = ["com.news360horizon.news360horizon.database"])
 @ComponentScan(basePackages = [
     "com.news360horizon.news360horizon",
-    "com.news360horizon.news360horizon.service"
+    "com.news360horizon.news360horizon.service",
+    "com.news360horizon.news360horizon.preference"
     ]
 )
 @EnableAutoConfiguration

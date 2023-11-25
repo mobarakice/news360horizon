@@ -1,22 +1,22 @@
-package com.news360horizon.news360horizon.database.category
+package com.news360horizon.news360horizon.database.notification
 
 import com.news360horizon.news360horizon.database.BaseEntity
-import com.news360horizon.news360horizon.database.language.LanguageEntity
+import com.news360horizon.news360horizon.database.content.ContentEntity
 import jakarta.persistence.*
 import java.sql.Timestamp
 import java.time.Instant
 
 @Entity
-@Table(name = "Category")
-data class CategoryEntity(
+@Table(name = "Notification")
+data class NotificationEntity(
     @Id
     override val id: Long,
-    var categoryName: String,
-    var description: String,
-    var icon: String?,
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(columnDefinition = "language_id", referencedColumnName = "id")
-    var language: LanguageEntity,
+    @JoinColumn(name = "content_id", referencedColumnName = "id", unique = false)
+    var content: ContentEntity,
+
+    @Column(name = "status")
+    var status: Boolean? = null,
     override var isActive: Boolean,
     override var isDelete: Boolean,
     override var createdBy: String?,
@@ -24,4 +24,4 @@ data class CategoryEntity(
     override var updatedBy: String?,
     override var updatedAt: Timestamp?
 
-):BaseEntity()
+) : BaseEntity()

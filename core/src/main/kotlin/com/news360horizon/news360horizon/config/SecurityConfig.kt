@@ -36,6 +36,7 @@ class SecurityConfig {
             .authorizeHttpRequests { auth ->
                 auth
                     .requestMatchers(*getUnsecuredPaths()).permitAll()
+                    .requestMatchers(AntPathRequestMatcher.antMatcher("/api/**")).permitAll()
                     .requestMatchers(
                         getSecuredPathBuilder().pattern("/admin/**")
                     ).hasRole("ADMIN")
@@ -65,7 +66,7 @@ class SecurityConfig {
     fun getUnsecuredPaths(): Array<AntPathRequestMatcher> {
         return arrayOf(
             "/static/**", "/css/**", "/js/**", "/images/**", "/resources/**",
-            "/icon/**", "/api/**", "/login", "/forgot-password", "/registration"
+            "/icon/**", "/login", "/forgot-password", "/registration"
         ).map {
             AntPathRequestMatcher.antMatcher(it)
         }.toTypedArray()

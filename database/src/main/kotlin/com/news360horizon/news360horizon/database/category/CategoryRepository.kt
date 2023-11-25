@@ -1,6 +1,7 @@
 package com.news360horizon.news360horizon.database.category
 
 import com.news360horizon.news360horizon.database.language.LanguageEntity
+import com.news360horizon.news360horizon.database.preference.PreferenceEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

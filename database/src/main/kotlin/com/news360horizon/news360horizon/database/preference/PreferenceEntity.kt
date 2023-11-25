@@ -1,4 +1,4 @@
-package com.news360horizon.news360horizon.database.category
+package com.news360horizon.news360horizon.database.preference
 
 import com.news360horizon.news360horizon.database.BaseEntity
 import com.news360horizon.news360horizon.database.language.LanguageEntity
@@ -7,15 +7,14 @@ import java.sql.Timestamp
 import java.time.Instant
 
 @Entity
-@Table(name = "Category")
-data class CategoryEntity(
+@Table(name = "Preference")
+data class PreferenceEntity(
     @Id
     override val id: Long,
-    var categoryName: String,
-    var description: String,
+    var preferenceName: String,
     var icon: String?,
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(columnDefinition = "language_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(columnDefinition = "language_id", referencedColumnName = "id", unique = false)
     var language: LanguageEntity,
     override var isActive: Boolean,
     override var isDelete: Boolean,
