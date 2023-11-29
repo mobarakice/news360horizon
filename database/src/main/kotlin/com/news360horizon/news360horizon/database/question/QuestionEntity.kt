@@ -15,7 +15,7 @@ data class QuestionEntity(
     @Column(name = "question_text")
     var questionText: String,
 
-    @OneToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @OneToOne(cascade = [CascadeType.REMOVE], fetch = FetchType.LAZY)
     @JoinColumn(name = "content_id", referencedColumnName = "id", unique = true)
     val content: ContentEntity,
 

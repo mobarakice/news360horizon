@@ -6,7 +6,6 @@ import com.news360horizon.news360horizon.database.contentpreference.ContentPrefe
 import com.news360horizon.news360horizon.database.contentresource.ContentResourceEntity
 import com.news360horizon.news360horizon.database.language.LanguageEntity
 import com.news360horizon.news360horizon.database.question.QuestionEntity
-import com.news360horizon.news360horizon.database.question.QuestionRepository
 import jakarta.persistence.*
 import java.sql.Timestamp
 import java.time.Instant
@@ -33,13 +32,13 @@ data class ContentEntity(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(columnDefinition = "language_id", referencedColumnName = "id")
     var language: LanguageEntity,
-    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "content", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
     var contentCategories: List<ContentCategoryEntity>,
-    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "content", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
     var contentPreferences: List<ContentPreferenceEntity>,
-    @OneToOne(cascade = [CascadeType.REMOVE], fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "content")
     var contentResource: ContentResourceEntity,
-    @OneToOne(cascade = [CascadeType.REMOVE], fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "content")
     var question: QuestionEntity? = null,
     override var isActive: Boolean,
     override var isDelete: Boolean,

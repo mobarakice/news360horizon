@@ -12,12 +12,12 @@ import java.time.Instant
 data class ContentCategoryEntity(
     @Id
     override val id: Long,
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(columnDefinition = "category_id", referencedColumnName = "id")
     var category: CategoryEntity,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "content_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "content_id", referencedColumnName = "id", nullable = false)
     private val content: ContentEntity,
     override var isActive: Boolean,
     override var isDelete: Boolean,

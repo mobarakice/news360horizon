@@ -16,7 +16,7 @@ data class ContentPreferenceEntity(
     @JoinColumn(columnDefinition = "preference_id", referencedColumnName = "id")
     var preference: PreferenceEntity,
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = [CascadeType.REMOVE],fetch = FetchType.LAZY)
     @JoinColumn(name = "content_id", referencedColumnName = "id")
     private val content: ContentEntity,
     override var isActive: Boolean,
